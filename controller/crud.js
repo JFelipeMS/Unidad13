@@ -122,7 +122,8 @@ exports.api_agregar = (req,res) => {
             console.log(error)
             return
         } else {
-            res.send('Registro agregado correctamente')
+            console.log(resultado)
+            res.send({estado:"0k", resultado:resultado})
         }
     })
 }
@@ -147,7 +148,8 @@ exports.api_actualizar = (req,res) => {
     })
 }
 exports.api_borrar = (req,res) => {
-    const id = req.query.id
+    const id = req.query.id || req.body.id
+    //console.log("aqui " + id)
     var comando = "delete from persona where id="+id
     console.log(comando)
     conexion.query(comando, (error, resultado) => {
@@ -155,7 +157,8 @@ exports.api_borrar = (req,res) => {
             console.log(error)
             return
         } else {
-            res.send('Registro Barrado Corerctamente')
+            console.log("Borrando" + resultado)
+            res.send('Registro Borrado Correctamente')
         }
     })
 }
@@ -168,6 +171,18 @@ exports.api_borrar_todo = (req,res) => {
             return
         } else {
             res.send('Registro Barrado Corerctamente')
+        }
+    })
+    var comando = "INSERT INTO persona (id,nombre,edad,genero,email) VALUES"+
+    "(100, 'Maria', 24, 1, 'maria@correo.com'),"+
+    "(200, 'Jose', 26, 0, 'jose@correo.com');"
+    console.log(comando)
+    conexion.query(comando, (error, resultado) => {
+        if(error){
+            console.log(error)
+            return
+        } else {
+            res.send('inicial agregado correctamente')
         }
     })
 }

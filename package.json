@@ -4,7 +4,7 @@
   "description": "",
   "main": "modulos01.js",
   "scripts": {
-    "test": "jest --verbose"
+    "test": "set NODE_OPTIONS=--experimental-vm-modules && jest --verbose"
   },
   "keywords": [],
   "author": "Javier Felipe Moncada Sánchez",
